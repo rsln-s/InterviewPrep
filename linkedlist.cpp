@@ -2,9 +2,7 @@
 #include <unordered_map>
 #include <string>
 
-class Node {
-
-public:
+struct Node {
 	Node* next = nullptr;
 	std::string data;
 
@@ -13,9 +11,9 @@ public:
 
 class List {
 
-public:
 	Node* head;
 	
+public:
 	List(Node* h) { head = h; }
 	
 	void append_to_tail(Node* new_tail){
