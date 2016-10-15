@@ -39,6 +39,11 @@ public:
 		return res;
 	}
 
+    Node* peek_from_head(){
+        return head;
+    }   
+
+
 	void remove (std::string val){
 		Node* iter = head;
 		if(iter->data == val){
@@ -73,19 +78,40 @@ public:
 	}
 };
 
+class Queue{
+	List* l;
+
+public:
+	Queue (std::string first_val){
+		Node* head = new Node(first_val);
+		l = new List(head);
+	}
+
+	void push(std::string val){
+		l->append_to_tail(val);
+	}
+
+	std::string pop(){
+		return (l->remove_from_head())->data;
+	}
+
+	std::string peek(){
+		return (l->peek_from_head())->data;
+	}	
+
+	void print_all(){
+		l->print_all();
+	}
+
+};
+
 int main(){
-	Node* a1 = new Node("aa");
-	Node* a2 = new Node("ab");
-	Node* a3 = new Node("dc");
-	List* l = new List(a3);
-	l->append_to_tail(a1);
-	l->append_to_tail(a2);
-	l->append_to_tail("ab");
-	l->append_to_tail("cg");
-	l->append_to_tail("aa");
-	l->print_all();
-	std::cout << "First:" << (l->remove_from_head())->data << '\n';
-	l->append_to_tail("fg");
-	l->print_all();
+	Queue* q = new Queue("-a");
+	q->push("a");
+	q->push("b");
+	std::cout << "first: " << q->peek() << '\n';
+	q->push("c");
+	q->pop();
+	q->print_all();
 	return 0;
 }
